@@ -1,0 +1,24 @@
+.fotter {
+  background-color: #00081d;
+  bottom: 0;
+  width: 100%;
+  margin-top: 5px;
+  padding: 20px;
+}
+.fotter-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.fotter-content div ul {
+  list-style: none;
+  color: white;
+  opacity: 0.8;
+}
+.fotter-content div ul li {
+  border-bottom: 1px solid gray;
+  margin: 15px;
+}

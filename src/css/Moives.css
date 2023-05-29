@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  filter: none;
+}
+.contain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  margin: 0 0 0 155px;
+}
+.form-select {
+  width: 15%;
+  border-radius: 5px;
+  margin: 20px 0 0 180px;
+}
+.f_shows {
+  width: 15%;
+  border-radius: 5px;
+  margin: 20px 0 0 180px;
+}
+@media screen and (max-width: 768px) {
+  .form-select {
+    width: 33%;
+    margin: 20px 0 0 60px;
+  }
+  .f_shows {
+    width: 33%;
+    margin: 20px 0 0 60px;
+  }
+  .contain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 0px;
+  }
+}
