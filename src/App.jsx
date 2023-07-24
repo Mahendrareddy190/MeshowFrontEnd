@@ -24,7 +24,7 @@ const App = () => {
       JSON.stringify([{ name: "", email: "", password: "" }])
     );
   }
-  console.log(Moives);
+  // console.log(Moives);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);

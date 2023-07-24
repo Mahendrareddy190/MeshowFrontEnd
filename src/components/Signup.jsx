@@ -15,40 +15,68 @@ const Signup = () => {
   const handle = (name) => (event) => {
     setUser_data({ ...user_data, [name]: event.target.value });
   };
+
+  const checkEmailExists = () => {
+    if (localStorage["user_data"]) {
+      const get_local = JSON.parse(localStorage.getItem("user_data"));
+      var isExists;
+      get_local.map((val) => {
+        if (val.email == user_data.email) {
+          isExists = false;
+        } else {
+          isExists = true;
+        }
+      });
+      return isExists;
+    }
+  };
+
   const submit = (e) => {
     e.preventDefault();
-    if (user_data.password.length >= 6) {
-      if (
-        user_data.email.length != 0 &&
-        user_data.password.length != 0 &&
-        user_data.name.length != 0
-      ) {
-        setnew_user((prev) => [...prev, user_data]);
-        if (localStorage["user_data"]) {
-          const get_local = JSON.parse(localStorage.getItem("user_data"));
-          const local_data = [...get_local, user_data];
-          localStorage.setItem("user_data", JSON.stringify(local_data));
-          swal(
-            "User Add successfully!😊",
-            "Navigated to logIn page",
-            "success"
-          );
-          navigate("/");
+    if (user_data.email.match("[a-z0-9]+@gmail.com") && checkEmailExists()) {
+      if (user_data.password.length >= 6) {
+        if (
+          user_data.email.length != 0 &&
+          user_data.password.length != 0 &&
+          user_data.name.length != 0
+        ) {
+          setnew_user((prev) => [...prev, user_data]);
+          if (localStorage["user_data"]) {
+            const get_local = JSON.parse(localStorage.getItem("user_data"));
+            const local_data = [...get_local, user_data];
+            localStorage.setItem("user_data", JSON.stringify(local_data));
+            swal(
+              "User Add successfully!😊",
+              "Navigated to logIn page",
+              "success"
+            );
+            navigate("/");
+          } else {
+            const local_data = [...new_user, user_data];
+            localStorage.setItem("user_data", JSON.stringify(local_data));
+            swal(
+              "User Add successfully!😊",
+              "Navigated to logIn page",
+              "success"
+            );
+            navigate("/");
+          }
         } else {
-          const local_data = [...new_user, user_data];
-          localStorage.setItem("user_data", JSON.stringify(local_data));
-          swal(
-            "User Add successfully!😊",
-            "Navigated to logIn page",
-            "success"
-          );
-          navigate("/");
+          swal("Oops🤦‍♂️", "Something went wrong!", "warning");
         }
       } else {
-        swal("Oops🤦‍♂️", "Something went wrong!", "warning");
+        swal(
+          "Oops🤦‍♂️",
+          "password must contain of length 6 (ex:-test@123)",
+          "warning"
+        );
       }
     } else {
-      swal("Oops🤦‍♂️", "password must contain atleast 6 characters", "warning");
+      swal(
+        "Oops🤦‍♂️",
+        "Invalid email ex:-test@gmail.com or already taken",
+        "warning"
+      );
     }
   };
   return (
